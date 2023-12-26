@@ -42,7 +42,7 @@ export default class AutoPostBadgePage extends ExtensionPage {
           ariaLabel: app.translator.trans('core.admin.appearance.colors_primary_label'),
         })}
       </div>,
-      70
+      60
     );
 
     return items;
