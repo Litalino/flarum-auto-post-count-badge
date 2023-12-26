@@ -1,0 +1,95 @@
+{
+    "name": "litalino/flarum-auto-post-count-badge",
+    "description": "Add Automatic badge to user after certain number of posts",
+    "keywords": [
+        "flarum",
+        "flarum extension",
+        "post badge",
+        "badge",
+        "post count badge"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "support": {
+        "forum": "https://discuss.flarum.org/d/29479",
+        "source": "https://github.com/justoverclockl/auto-post-count-badge",
+        "issues": "https://github.com/justoverclockl/auto-post-count-badge/issues"
+    },
+    "require": {
+        "flarum/core": "^1.2.0"
+    },
+    "replace": {
+        "justoverclock/auto-post-count-badge": "*"
+    },
+    "authors": [
+        {
+            "name": "litalino",
+            "email": "info@khatvongsong.vn",
+            "role": "Co-development"
+        },
+		{
+            "name": "Marco Colia",
+            "email": "info@flarum.it",
+            "role": "Developer"
+        }
+    ],
+    "funding": [
+        {
+            "type": "website",
+            "url": "https://www.paypal.com/donate?hosted_button_id=25WSH565TJCLE"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Litalino\\AutoPostCountBadge\\": "src/"
+        }
+    },
+    "homepage": "https://khatvongsong.vn",
+    "extra": {
+        "flarum-extension": {
+            "title": "Auto Post Badge",
+            "category": "feature",
+            "icon": {
+                "name": "fas fa-medal",
+                "backgroundColor": "orange",
+                "color": "black"
+            }
+        },
+        "flarum-cli": {
+          "modules": {
+            "admin": true,
+            "forum": true,
+            "js": true,
+            "jsCommon": false,
+            "css": true,
+            "locale": true,
+            "gitConf": true,
+            "githubActions": true,
+            "prettier": true,
+            "typescript": false,
+            "bundlewatch": false,
+            "backendTesting": false,
+            "editorConfig": true,
+            "styleci": true
+          }
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../*/*"
+        }
+    ],
+    "require-dev": {
+      "flarum/phpstan": "*"
+    },
+    "scripts": {
+        "analyse:phpstan": "phpstan analyse",
+        "clear-cache:phpstan": "phpstan clear-result-cache"
+    },
+    "scripts-descriptions": {
+        "analyse:phpstan": "Run static analysis"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
