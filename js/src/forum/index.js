@@ -36,7 +36,9 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
       //const post = this.attrs.post;
       //const userPosts = post.user()?.commentCount();
       const complColor = app.forum.attribute('justoverclock-auto-post-count-badge.bgColor') || '#d7ffcc';
+      //console.log("complColor: " + complColor);
       const backgrTwo = app.forum.attribute('justoverclock-auto-post-count-badge.bgColorTwo') || '#ffffff';
+      //console.log("backgrTwo: " + backgrTwo);
 
       if (!post.isHidden()) {
         //console.log("userPosts: " + userPosts);
