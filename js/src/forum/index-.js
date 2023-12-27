@@ -1,7 +1,6 @@
 import app from 'flarum/forum/app';
 import { extend } from 'flarum/common/extend';
 import PostUser from 'flarum/forum/components/PostUser';
-import CommentPost from "flarum/forum/components/CommentPost";
 import User from 'flarum/common/models/User';
 import Model from 'flarum/common/Model';
 //import PostCountBadge from './components/PostCountBadge';
@@ -10,10 +9,8 @@ import Tooltip from "flarum/common/components/Tooltip";
 app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
   User.prototype.autoCountBadge = Model.attribute('autoCountBadge');
   User.prototype.autoCountBadgeLabel = Model.attribute('autoCountBadgeLabel');
-  User.prototype.autoCountBadgeOn = Model.attribute('autoCountBadgeOn');
 
-
-  extend(CommentPost.prototype, 'headerItems', function (items) {
+  extend(PostUser.prototype, 'view', function (vnode) {
     const checkRoute = app.current.get('routeName');
 
     if (checkRoute === 'discussion' || checkRoute === 'discussion.near' || checkRoute === 'blogArticle') {
@@ -63,7 +60,7 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
           */
           //console.log("userPosts: " + userPosts);
           //const One =  app.forum.attribute('justoverclock-auto-post-badge-pro.iconOne') || 'fas fa-baby' + ' autopost';
-          const icon_class = app.forum.attribute("justoverclock-auto-post-count-badge.levelOne") || "fas fa-baby" + " autopost";
+          const One = app.forum.attribute("justoverclock-auto-post-count-badge.levelOne") || "fas fa-baby" + " autopost";
           //const lowerBound = app.forum.attribute('justoverclock-auto-post-badge-pro.fromOne');
           //const upperBound = app.forum.attribute('justoverclock-auto-post-badge-pro.toOne');
           const lowerBound = One_min; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.tierOne.from');
@@ -73,24 +70,25 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
           const perc = ((userPosts - lowerBound) / (upperBound - lowerBound)) * 100;
           let bgPerc = `background: -webkit-linear-gradient(left, ${complColor} ${perc}%,${backgrTwo} ${perc}%) !important;`;
           //<i class={userClass + ' autopost'} /> {userBadgeLabel}
-          items.add(
-            'autoCountBadgeOn',
-            <Tooltip
-              text={
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
-                  {
-                    count: userPosts,
-                  }
-                )
-              }
-            >
-              <span className="auto-badge" style={bgPerc}>
-                <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
-              </span>
-            </Tooltip>
+          vnode.children.push(
+            <span>
+              <Tooltip
+                text={
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
+                    {
+                      count: userPosts,
+                    }
+                  )
+                }
+              >
+                <span className="auto-badge" style={bgPerc}>
+                  <i class={One} />
+                  {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
+                </span>
+              </Tooltip>
+            </span>
           );
         }
 
@@ -99,7 +97,7 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
         if (userPosts >= Two_min && userPosts <= Two_max) {
           //console.log("userPosts: " + userPosts);
           //const Two =  app.forum.attribute('justoverclock-auto-post-badge-pro.iconTow') || 'fas fa-child' + ' autopost';
-          const icon_class = app.forum.attribute("justoverclock-auto-post-badge.levelTow") || "fas fa-child" + " autopost";
+          const Two = app.forum.attribute("justoverclock-auto-post-badge.levelTow") || "fas fa-child" + " autopost";
           //const lowerBound = app.forum.attribute('justoverclock-auto-post-badge-pro.fromOne');
           //const upperBound = app.forum.attribute('justoverclock-auto-post-badge-pro.toOne');
           const lowerBound = Two_min; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.tierOne.from');
@@ -114,24 +112,25 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
           //console.log("perc: " + perc);
           let bgPerc = `background: -webkit-linear-gradient(left, ${complColor} ${perc}%,${backgrTwo} ${perc}%) !important;`;
           //console.log("bgPerc: " + bgPerc);
-          items.add(
-            'autoCountBadgeOn',
-            <Tooltip
-              text={
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
-                  {
-                    count: userPosts,
-                  }
-                )
-              }
-            >
-              <span className="auto-badge" style={bgPerc}>
-                <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
-              </span>
-            </Tooltip>
+          vnode.children.push(
+            <span>
+              <Tooltip
+                text={
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
+                    {
+                      count: userPosts,
+                    }
+                  )
+                }
+              >
+                <span className="auto-badge" style={bgPerc}>
+                  <i class={Two} />
+                  {app.forum.attribute("justoverclock-auto-post-count-badge.badgeTow") || "The Newbie"}
+                </span>
+              </Tooltip>
+            </span>
           );
         }
 
@@ -139,31 +138,32 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
         const Tree_max = "99";
         if (userPosts >= Tree_min && userPosts <= Tree_max) {
           //console.log("userPosts: " + userPosts);
-          const icon_class = app.forum.attribute("justoverclock-auto-post-badge.levelTree") || "fas fa-bullhorn" + " autopost";
+          const Tree = app.forum.attribute("justoverclock-auto-post-badge.levelTree") || "fas fa-bullhorn" + " autopost";
           const lowerBound = Tree_min; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.from');
           const upperBound = Tree_max; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.to');
           const nextBadge = userPosts - upperBound + 1;
           const resNextBadge = Math.abs(nextBadge);
           const perc = ((userPosts - lowerBound) / (upperBound - lowerBound)) * 100;
           let bgPerc = `background: -webkit-linear-gradient(left, ${complColor} ${perc}%,${backgrTwo} ${perc}%) !important;`;
-          items.add(
-            'autoCountBadgeOn',
-            <Tooltip
-              text={
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
-                  {
-                    count: userPosts,
-                  }
-                )
-              }
-            >
-              <span className="auto-badge" style={bgPerc}>
-                <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
-              </span>
-            </Tooltip>
+          vnode.children.push(
+            <span>
+              <Tooltip
+                text={
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
+                    {
+                      count: userPosts,
+                    }
+                  )
+                }
+              >
+                <span className="auto-badge" style={bgPerc}>
+                  <i class={Tree} />
+                  {app.forum.attribute("justoverclock-auto-post-count-badge.badgeTree") || "The Talker"}
+                </span>
+              </Tooltip>
+            </span>
           );
         }
 
@@ -171,31 +171,32 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
         const Four_max = "299";
         if (userPosts >= Four_min && userPosts <= Four_max) {
           //console.log("userPosts: " + userPosts);
-          const icon_class = app.forum.attribute("justoverclock-auto-post-badge.levelFour") || "fas fa-chalkboard-teacher" + " autopost";
+          const Four = app.forum.attribute("justoverclock-auto-post-badge.levelFour") || "fas fa-chalkboard-teacher" + " autopost";
           const lowerBound = Four_min; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.from');
           const upperBound = Four_max; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.to');
           const nextBadge = userPosts - upperBound + 1;
           const resNextBadge = Math.abs(nextBadge);
           const perc = ((userPosts - lowerBound) / (upperBound - lowerBound)) * 100;
           let bgPerc = `background: -webkit-linear-gradient(left, ${complColor} ${perc}%,${backgrTwo} ${perc}%) !important;`;
-          items.add(
-            'autoCountBadgeOn',
-            <Tooltip
-              text={
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
-                  {
-                    count: userPosts,
-                  }
-                )
-              }
-            >
-              <span className="auto-badge" style={bgPerc}>
-                <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
-              </span>
-            </Tooltip>
+          vnode.children.push(
+            <span>
+              <Tooltip
+                text={
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
+                    {
+                      count: userPosts,
+                    }
+                  )
+                }
+              >
+                <span className="auto-badge" style={bgPerc}>
+                  <i class={Four} />
+                  {app.forum.attribute("justoverclock-auto-post-count-badge.badgeFour") || "The Teacher"}
+                </span>
+              </Tooltip>
+            </span>
           );
         }
 
@@ -203,31 +204,32 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
         const Five_max = "599";
         if (userPosts >= Five_min && userPosts <= Five_max) {
           //console.log("userPosts: " + userPosts);
-          const icon_class = app.forum.attribute("justoverclock-auto-post-badge.levelFive") || "fas fa-monster" + " autopost";
+          const Five = app.forum.attribute("justoverclock-auto-post-badge.levelFive") || "fas fa-monster" + " autopost";
           const lowerBound = Five_min; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.from');
           const upperBound = Five_max; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.to');
           const nextBadge = userPosts - upperBound + 1;
           const resNextBadge = Math.abs(nextBadge);
           const perc = ((userPosts - lowerBound) / (upperBound - lowerBound)) * 100;
           let bgPerc = `background: -webkit-linear-gradient(left, ${complColor} ${perc}%,${backgrTwo} ${perc}%) !important;`;
-          items.add(
-            'autoCountBadgeOn',
-            <Tooltip
-              text={
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
-                  {
-                    count: userPosts,
-                  }
-                )
-              }
-            >
-              <span className="auto-badge" style={bgPerc}>
-                <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
-              </span>
-            </Tooltip>
+          vnode.children.push(
+            <span>
+              <Tooltip
+                text={
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
+                    {
+                      count: userPosts,
+                    }
+                  )
+                }
+              >
+                <span className="auto-badge" style={bgPerc}>
+                  <i class={Five} />
+                  {app.forum.attribute("justoverclock-auto-post-count-badge.badgeFive") || "The Monster"}
+                </span>
+              </Tooltip>
+            </span>
           );
         }
 
@@ -235,31 +237,32 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
         const Six_max = "999";
         if (userPosts >= Six_min && userPosts <= Six_max) {
           //console.log("userPosts: " + userPosts);
-          const icon_class = app.forum.attribute("justoverclock-auto-post-badge.levelSix") || "fas fa-graduation-cap" + " autopost";
+          const Six = app.forum.attribute("justoverclock-auto-post-badge.levelSix") || "fas fa-graduation-cap" + " autopost";
           const lowerBound = Six_min; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.from');
           const upperBound = Six_max; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.to');
           const nextBadge = userPosts - upperBound + 1;
           const resNextBadge = Math.abs(nextBadge);
           const perc = ((userPosts - lowerBound) / (upperBound - lowerBound)) * 100;
           let bgPerc = `background: -webkit-linear-gradient(left, ${complColor} ${perc}%,${backgrTwo} ${perc}%) !important;`;
-          items.add(
-            'autoCountBadgeOn',
-            <Tooltip
-              text={
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
-                  {
-                    count: userPosts,
-                  }
-                )
-              }
-            >
-              <span className="auto-badge" style={bgPerc}>
-                <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
-              </span>
-            </Tooltip>
+          vnode.children.push(
+            <span>
+              <Tooltip
+                text={
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
+                    {
+                      count: userPosts,
+                    }
+                  )
+                }
+              >
+                <span className="auto-badge" style={bgPerc}>
+                  <i class={Six} />
+                  {app.forum.attribute("justoverclock-auto-post-count-badge.badgeSix") || "The Guru!"}
+                </span>
+              </Tooltip>
+            </span>
           );
         }
 
@@ -267,31 +270,32 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
         const Seven_max = "1999";
         if (userPosts >= Seven_min && userPosts <= Seven_max) {
           //console.log("userPosts: " + userPosts);
-          const icon_class = app.forum.attribute("justoverclock-auto-post-badge.levelSeven") || "fas fa-medal" + " autopost";
+          const Seven = app.forum.attribute("justoverclock-auto-post-badge.levelSeven") || "fas fa-medal" + " autopost";
           const lowerBound = Seven_min; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.from');
           const upperBound = Seven_max; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.to');
           const nextBadge = userPosts - upperBound + 1;
           const resNextBadge = Math.abs(nextBadge);
           const perc = ((userPosts - lowerBound) / (upperBound - lowerBound)) * 100;
           let bgPerc = `background: -webkit-linear-gradient(left, ${complColor} ${perc}%,${backgrTwo} ${perc}%) !important;`;
-          items.add(
-            'autoCountBadgeOn',
-            <Tooltip
-              text={
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
-                  {
-                    count: userPosts,
-                  }
-                )
-              }
-            >
-              <span className="auto-badge" style={bgPerc}>
-                <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
-              </span>
-            </Tooltip>
+          vnode.children.push(
+            <span>
+              <Tooltip
+                text={
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
+                    {
+                      count: userPosts,
+                    }
+                  )
+                }
+              >
+                <span className="auto-badge" style={bgPerc}>
+                  <i class={Seven} />
+                  {app.forum.attribute("justoverclock-auto-post-count-badge.badgeSeven") || "The Flarumist!"}
+                </span>
+              </Tooltip>
+            </span>
           );
         }
 
@@ -299,31 +303,32 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
         const Eight_max = "3999";
         if (userPosts >= Eight_min && userPosts <= Eight_max) {
           //console.log("userPosts: " + userPosts);
-          const icon_class = app.forum.attribute("justoverclock-auto-post-badge.levelEight") || "fas fa-stethoscope" + " autopost";
+          const Eight = app.forum.attribute("justoverclock-auto-post-badge.levelEight") || "fas fa-stethoscope" + " autopost";
           const lowerBound = Eight_min; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.from');
           const upperBound = Eight_max; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.to');
           const nextBadge = userPosts - upperBound + 1;
           const resNextBadge = Math.abs(nextBadge);
           const perc = ((userPosts - lowerBound) / (upperBound - lowerBound)) * 100;
           let bgPerc = `background: -webkit-linear-gradient(left, ${complColor} ${perc}%,${backgrTwo} ${perc}%) !important;`;
-          items.add(
-            'autoCountBadgeOn',
-            <Tooltip
-              text={
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
-                  {
-                    count: userPosts,
-                  }
-                )
-              }
-            >
-              <span className="auto-badge" style={bgPerc}>
-                <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
-              </span>
-            </Tooltip>
+          vnode.children.push(
+            <span>
+              <Tooltip
+                text={
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
+                    {
+                      count: userPosts,
+                    }
+                  )
+                }
+              >
+                <span className="auto-badge" style={bgPerc}>
+                  <i class={Eight} />
+                  {app.forum.attribute("justoverclock-auto-post-count-badge.badgeEight") || "The Expert!"}
+                </span>
+              </Tooltip>
+            </span>
           );
         }
 
@@ -331,31 +336,32 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
         const Nine_max = "7999";
         if (userPosts >= Nine_min && userPosts <= Nine_max) {
           //console.log("userPosts: " + userPosts);
-          const icon_class = app.forum.attribute("justoverclock-auto-post-badge.levelNine") || "fas fa-bible" + " autopost";
+          const Nine = app.forum.attribute("justoverclock-auto-post-badge.levelNine") || "fas fa-bible" + " autopost";
           const lowerBound = Nine_min; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.from');
           const upperBound = Nine_max; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.to');
           const nextBadge = userPosts - upperBound + 1;
           const resNextBadge = Math.abs(nextBadge);
           const perc = ((userPosts - lowerBound) / (upperBound - lowerBound)) * 100;
           let bgPerc = `background: -webkit-linear-gradient(left, ${complColor} ${perc}%,${backgrTwo} ${perc}%) !important;`;
-          items.add(
-            'autoCountBadgeOn',
-            <Tooltip
-              text={
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
-                  {
-                    count: userPosts,
-                  }
-                )
-              }
-            >
-              <span className="auto-badge" style={bgPerc}>
-                <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
-              </span>
-            </Tooltip>
+          vnode.children.push(
+            <span>
+              <Tooltip
+                text={
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
+                    {
+                      count: userPosts,
+                    }
+                  )
+                }
+              >
+                <span className="auto-badge" style={bgPerc}>
+                  <i class={Nine} />
+                  {app.forum.attribute("justoverclock-auto-post-count-badge.badgeNine") || "The God*"}
+                </span>
+              </Tooltip>
+            </span>
           );
         }
 
@@ -363,31 +369,32 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
         const Ten_max = "9999";
         if (userPosts >= Ten_min && userPosts <= Ten_max) {
           //console.log("userPosts: " + userPosts);
-          const icon_class = app.forum.attribute("justoverclock-auto-post-badge.levelTen") || "fas fa-user-shield" + " autopost";
+          const Ten = app.forum.attribute("justoverclock-auto-post-badge.levelTen") || "fas fa-user-shield" + " autopost";
           const lowerBound = Ten_min; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.from');
           const upperBound = Ten_max; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.to');
           const nextBadge = userPosts - upperBound + 1;
           const resNextBadge = Math.abs(nextBadge);
           const perc = ((userPosts - lowerBound) / (upperBound - lowerBound)) * 100;
           let bgPerc = `background: -webkit-linear-gradient(left, ${complColor} ${perc}%,${backgrTwo} ${perc}%) !important;`;
-          items.add(
-            'autoCountBadgeOn',
-            <Tooltip
-              text={
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
-                app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
-                  {
-                    count: userPosts,
-                  }
-                )
-              }
-            >
-              <span className="auto-badge" style={bgPerc}>
-                <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
-              </span>
-            </Tooltip>
+          vnode.children.push(
+            <span>
+              <Tooltip
+                text={
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.nextBadge") + " " + resNextBadge + " " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.posts") + " :: " +
+                  app.translator.trans("justoverclock-auto-post-count-badge.forum.hasWritten",
+                    {
+                      count: userPosts,
+                    }
+                  )
+                }
+              >
+                <span className="auto-badge" style={bgPerc}>
+                  <i class={Ten} />
+                  {app.forum.attribute("justoverclock-auto-post-count-badge.badgeTen") || "*The Untouchable*"}
+                </span>
+              </Tooltip>
+            </span>
           );
         }
 
