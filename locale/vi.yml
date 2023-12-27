@@ -1,0 +1,37 @@
+justoverclock-auto-post-count-badge:
+  admin:
+    settings:
+      tier: "Cấp {tier} : từ {from} tới {to} bài viết"
+      icon-manager:
+        title: Trình quản lý biểu tượng
+        help_text: => core.ref.icon_text
+      label-manager:
+        title: Trình quản lý nhãn văn bản
+        help: Tùy chỉnh tên cấp độ
+      color:
+        bg1: Bối cảnh 1
+        bg2: Bối cảnh 2
+
+    # Are these used? Probably can remove them.
+    levelOne: Thay đổi biểu tượng cho cấp 1 - "The Baby"
+    levelOne-help: dán vào đây biểu tượng phông chữ tuyệt vời mà bạn muốn hiển thị cho cấp 1 (ví dụ. "fas fa-square")
+    levelTwo: Thay đổi biểu tượng cho cấp 2 - "The Newbie"
+    levelTwo-help: dán vào đây biểu tượng phông chữ tuyệt vời mà bạn muốn hiển thị cho cấp 2 (ví dụ. "fas fa-square")
+    levelTree: Thay đổi biểu tượng cho cấp 3 - "The Talker"
+    levelTree-help: dán vào đây biểu tượng phông chữ tuyệt vời mà bạn muốn hiển thị cho cấp 3 (ví dụ. "fas fa-square")
+    levelFour: Thay đổi biểu tượng cho cấp 4 - "The Teacher"
+    levelFour-help: dán vào đây biểu tượng phông chữ tuyệt vời mà bạn muốn hiển thị cho cấp 4 (ví dụ. "fas fa-square")
+    levelFive: Thay đổi biểu tượng cho cấp 5 - "The Monster!"
+    levelFive-help: dán vào đây biểu tượng phông chữ tuyệt vời mà bạn muốn hiển thị cho cấp 5 (ví dụ. "fas fa-square")
+    levelSix: Thay đổi biểu tượng cho cấp 6 - "The Guru!"
+    levelSix-help: dán vào đây biểu tượng phông chữ tuyệt vời mà bạn muốn hiển thị cho cấp 6 (ví dụ. "fas fa-square")
+  forum:
+    less10post: The Baby
+    less50post: The Newbie
+    less100post: The Talker
+    less300post: The Teacher
+    less600post: The Monster!
+    less1000post: The Guru!
+    hasWritten: "Đang có: {count, plural, one {# bài viết} other {# bài viết}}"
+    nextBadge: Huy hiệu tiếp theo còn
+    posts: bài viết
