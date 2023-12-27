@@ -1,5 +1,5 @@
 {
-  "name": "@litlino/flarum-auto-post-count-badge",
+  "name": "@litalino/flarum-auto-post-count-badge",
   "version": "1.0.0",
   "private": true,
   "prettier": "@flarum/prettier-config",
