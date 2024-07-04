@@ -138,7 +138,7 @@ export default class AutoPostBadgePage extends ExtensionPage {
 
     items.add(
       'tierThree',
-      <div className="formTree">
+      <div className="formThree">
         <div className="helptext">
           {app.translator.trans('justoverclock-auto-post-count-badge.admin.settings.tier', {
             tier: 3,
@@ -148,10 +148,10 @@ export default class AutoPostBadgePage extends ExtensionPage {
         </div>
         <input
           type="text"
-          name="tierTree"
+          name="tierThree"
           className="FormControl autopost"
           placeholder="fas fa-bullhorn"
-          bidi={this.setting('justoverclock-auto-post-count-badge.levelTree')}
+          bidi={this.setting('justoverclock-auto-post-count-badge.levelThree')}
         />
         <Button onclick={this.saveSettings.bind(this)} className="Button Button--primary autopost">
           <i className="fas fa-save autopost" />
@@ -393,7 +393,7 @@ export default class AutoPostBadgePage extends ExtensionPage {
 
     items.add(
       'tierThree',
-      <div className="formTree">
+      <div className="formThree">
         <div className="helptext">
           {app.translator.trans('justoverclock-auto-post-count-badge.admin.settings.tier', {
             tier: 3,
@@ -403,10 +403,10 @@ export default class AutoPostBadgePage extends ExtensionPage {
         </div>
         <input
           type="text"
-          name="badgeTree"
+          name="badgeThree"
           className="FormControl autopost"
           placeholder="The Talker"
-          bidi={this.setting('justoverclock-auto-post-count-badge.badgeTree')}
+          bidi={this.setting('justoverclock-auto-post-count-badge.badgeThree')}
         />
         <Button onclick={this.saveSettings.bind(this)} className="Button Button--primary autopost">
           <i className="fas fa-save autopost" />

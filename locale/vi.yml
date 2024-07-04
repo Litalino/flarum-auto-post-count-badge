@@ -17,8 +17,8 @@ justoverclock-auto-post-count-badge:
     levelOne-help: dán vào đây biểu tượng phông chữ tuyệt vời mà bạn muốn hiển thị cho cấp 1 (ví dụ. "fas fa-square")
     levelTwo: Thay đổi biểu tượng cho cấp 2 - "The Newbie"
     levelTwo-help: dán vào đây biểu tượng phông chữ tuyệt vời mà bạn muốn hiển thị cho cấp 2 (ví dụ. "fas fa-square")
-    levelTree: Thay đổi biểu tượng cho cấp 3 - "The Talker"
-    levelTree-help: dán vào đây biểu tượng phông chữ tuyệt vời mà bạn muốn hiển thị cho cấp 3 (ví dụ. "fas fa-square")
+    levelThree: Thay đổi biểu tượng cho cấp 3 - "The Talker"
+    levelThree-help: dán vào đây biểu tượng phông chữ tuyệt vời mà bạn muốn hiển thị cho cấp 3 (ví dụ. "fas fa-square")
     levelFour: Thay đổi biểu tượng cho cấp 4 - "The Teacher"
     levelFour-help: dán vào đây biểu tượng phông chữ tuyệt vời mà bạn muốn hiển thị cho cấp 4 (ví dụ. "fas fa-square")
     levelFive: Thay đổi biểu tượng cho cấp 5 - "The Monster!"

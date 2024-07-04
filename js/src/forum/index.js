@@ -98,8 +98,8 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
         const Two_max = "49";
         if (userPosts >= Two_min && userPosts <= Two_max) {
           //console.log("userPosts: " + userPosts);
-          //const Two =  app.forum.attribute('justoverclock-auto-post-badge-pro.iconTow') || 'fas fa-child' + ' autopost';
-          const icon_class = app.forum.attribute("justoverclock-auto-post-badge.levelTow") || "fas fa-child" + " autopost";
+          //const Two =  app.forum.attribute('justoverclock-auto-post-badge-pro.iconTwo') || 'fas fa-child' + ' autopost';
+          const icon_class = app.forum.attribute("justoverclock-auto-post-badge.levelTwo") || "fas fa-child" + " autopost";
           //const lowerBound = app.forum.attribute('justoverclock-auto-post-badge-pro.fromOne');
           //const upperBound = app.forum.attribute('justoverclock-auto-post-badge-pro.toOne');
           const lowerBound = Two_min; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.tierOne.from');
@@ -129,19 +129,19 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
             >
               <span className="auto-badge" style={bgPerc}>
                 <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
+                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeTwo") || "The Newbie"}
               </span>
             </Tooltip>
           );
         }
 
-        const Tree_min = "50";
-        const Tree_max = "99";
-        if (userPosts >= Tree_min && userPosts <= Tree_max) {
+        const Three_min = "50";
+        const Three_max = "99";
+        if (userPosts >= Three_min && userPosts <= Three_max) {
           //console.log("userPosts: " + userPosts);
-          const icon_class = app.forum.attribute("justoverclock-auto-post-badge.levelTree") || "fas fa-bullhorn" + " autopost";
-          const lowerBound = Tree_min; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.from');
-          const upperBound = Tree_max; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.to');
+          const icon_class = app.forum.attribute("justoverclock-auto-post-badge.levelThree") || "fas fa-bullhorn" + " autopost";
+          const lowerBound = Three_min; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.from');
+          const upperBound = Three_max; //app.forum.attribute('justoverclock-auto-post-count-badge.admin.settings.One.to');
           const nextBadge = userPosts - upperBound + 1;
           const resNextBadge = Math.abs(nextBadge);
           const perc = ((userPosts - lowerBound) / (upperBound - lowerBound)) * 100;
@@ -161,7 +161,7 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
             >
               <span className="auto-badge" style={bgPerc}>
                 <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
+                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeThree") || "The Talker"}
               </span>
             </Tooltip>
           );
@@ -193,7 +193,7 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
             >
               <span className="auto-badge" style={bgPerc}>
                 <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
+                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeFour") || "The Teacher"}
               </span>
             </Tooltip>
           );
@@ -225,7 +225,7 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
             >
               <span className="auto-badge" style={bgPerc}>
                 <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
+                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeFive") || "The Monster!"}
               </span>
             </Tooltip>
           );
@@ -257,7 +257,7 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
             >
               <span className="auto-badge" style={bgPerc}>
                 <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
+                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeSix") || "The Guru!"}
               </span>
             </Tooltip>
           );
@@ -289,7 +289,7 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
             >
               <span className="auto-badge" style={bgPerc}>
                 <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
+                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeSeven") || "The Flarumist!"}
               </span>
             </Tooltip>
           );
@@ -321,7 +321,7 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
             >
               <span className="auto-badge" style={bgPerc}>
                 <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
+                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeEight") || "Expert"}
               </span>
             </Tooltip>
           );
@@ -353,7 +353,7 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
             >
               <span className="auto-badge" style={bgPerc}>
                 <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
+                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeNine") || "Gol*"}
               </span>
             </Tooltip>
           );
@@ -385,7 +385,7 @@ app.initializers.add('litalino/flarum-auto-post-count-badge', () => {
             >
               <span className="auto-badge" style={bgPerc}>
                 <i class={icon_class} />
-                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeOne") || "The Baby"}
+                {app.forum.attribute("justoverclock-auto-post-count-badge.badgeTen") || "*Untouchable*"}
               </span>
             </Tooltip>
           );
